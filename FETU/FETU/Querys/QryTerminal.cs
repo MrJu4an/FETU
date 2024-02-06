@@ -45,6 +45,18 @@ namespace FETU.Querys
                   $"WHERE STNIT = '{ STNIT }'";
             return dbs.OpenData(QRY);
         }
+        public DataRow SelectSede(string nombreSede)
+        {
+            App.Motor = DatabaseType.Oracle;
+            dbs.TypeData = DatabaseType.Oracle;
+            dbs.ValidarConexion();
+            QRY = "SELECT DSCODDET " +
+                    "FROM GESUPTIP " +
+                    "INNER JOIN GEDETSUPTIP ON STCODTIP = DSCODTIP " +
+                    "WHERE STDES = 'TERMINALES' " +
+                    $"AND DSDES = '{nombreSede}' ";
+            return dbs.OpenRow(QRY);
+        }
         public int InsertDatosTerminal(string DTNIT, string DTRAZONSOCIAL, string DTDIRECCION,
             string DTTELEFONO, string DTCODDEPTO, string DTCODCIUDAD,
             string DTEMAIL, string DTEMAILFAC, string DTSOFTWAREID,

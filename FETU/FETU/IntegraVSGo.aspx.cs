@@ -9,6 +9,7 @@ using FETU.Querys;
 using System.Configuration;
 using System.Net;
 using System.IO;
+using System.Drawing;
 
 namespace FETU
 {
@@ -16,6 +17,7 @@ namespace FETU
     {
         QryFunciones Funciones = new QryFunciones();
         QryFactura Factura = new QryFactura();
+        QryTerminal Terminal = new QryTerminal();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["CodUsuario"] == null || Session["CodUsuario"].ToString() == "")
@@ -78,8 +80,6 @@ namespace FETU
         {
             try
             {
-                DataTable Tabla;
-                string total = "";
                 if (txtFecIni.Text == "")
                 {
                     Alert("Error", "Seleccione la fecha inicial de búsqueda", 3, "Aceptar");
@@ -95,64 +95,115 @@ namespace FETU
                     Alert("Error", "La fecha final no puede ser inferior a la inicial", 3, "Aceptar");
                     return;
                 }
-                if (cmbTerminal.SelectedIndex == 0)
-                {
-                    Alert("Error", "Seleccione una terminal", 3, "Aceptar");
-                    return;
-                }
-                if(cmbSede.SelectedIndex == 0)
-                {
-                    Alert("Error", "Seleccione una sede", 3, "Aceptar");
-                    return;
-                }
+                //if (cmbTerminal.SelectedIndex == 0)
+                //{
+                //    Alert("Error", "Seleccione una terminal", 3, "Aceptar");
+                //    return;
+                //}
+                //if (cmbSede.SelectedIndex == 0)
+                //{
+                //    Alert("Error", "Seleccione una sede", 3, "Aceptar");
+                //    return;
+                //}
 
-                //Llenamos la tabla de FETU
-                Tabla = Factura.SelectFacturas(txtFecIni.Text, txtFecFin.Text, cmbSede.SelectedValue);
-                if (Tabla != null)
-                {
-                    tituloFetu.Visible = true;
-                    ComparativoFetu.Visible = true;
-                    grdFetu.DataSource = Tabla;
-                    grdFetu.DataBind();
-                    estTabla2.Visible = false;
-                }
-                else
-                {
-                    tituloFetu.Visible = false;
-                    ComparativoFetu.Visible = false;
-                    grdFetu.DataSource = null;
-                    grdFetu.DataBind();
-                    estTabla2.Visible = true;
-                }
+                //Llenamos las tablas
+                llenarTablaFETU(txtFecIni.Text, txtFecFin.Text, cmbTerminal.SelectedValue, cmbSede.SelectedValue);
+                llenarTablaIntegra(txtFecIni.Text, txtFecFin.Text);
 
-                //Llenamos la tabla de Integra
-                total = consultarIntegra(txtFecIni.Text, txtFecFin.Text, cmbSede.SelectedValue);
-                if (total != null && total != String.Empty)
-                {
-                    Tabla.Columns.Clear();
-                    Tabla.Clear();
-                    Tabla.Columns.Add("DSDES", typeof(string));
-                    Tabla.Columns.Add("TOTAL", typeof(string));
-                    Tabla.Rows.Add(cmbSede.SelectedItem, total.Replace("\x022", ""));
-
-                    tituloIntegra.Visible = true;
-                    ComparativoIntegra.Visible = true;
-                    grdIntegra.DataSource = Tabla;
-                    grdIntegra.DataBind();
-                    estTabla.Visible = false;
-                }
-                else
-                {
-                    tituloIntegra.Visible = false;
-                    ComparativoIntegra.Visible = false;
-                    grdIntegra.DataSource = null;
-                    grdIntegra.DataBind();
-                    estTabla.Visible = true;
-                }
+                //Coloreamos la tabla
+                colorearTabla();
             }
             catch (Exception ex)
             {
                 Alert("Error", ex.Message, 3, "Aceptar");
+            }
+        }
+        protected void llenarTablaFETU(string fecIni, string fecFin, string nit, string sede)
+        {
+            DataTable Tabla = new DataTable();
+            //Llenamos la tabla de FETU
+            //Si la sede es 0 traemos todas las terminales
+            if (sede != "0" && sede != "")
+            {
+                Tabla = Factura.SelectFacturasSede(txtFecIni.Text, txtFecFin.Text, sede);
+            }
+            else if(nit != "0" && nit != "")
+            {
+                Tabla = Factura.SelectFacturasNit(txtFecIni.Text, txtFecFin.Text, nit);
+            }
+            else
+            {
+                Tabla = Factura.SelectFacturas(txtFecIni.Text, txtFecFin.Text);
+            }
+
+            if (Tabla != null)
+            {
+                tituloFetu.Visible = true;
+                ComparativoFetu.Visible = true;
+                grdFetu.DataSource = Tabla;
+                grdFetu.DataBind();
+                estTabla2.Visible = false;
+            }
+            else
+            {
+                tituloFetu.Visible = false;
+                ComparativoFetu.Visible = false;
+                grdFetu.DataSource = null;
+                grdFetu.DataBind();
+                estTabla2.Visible = true;
+            }
+        }
+        protected void llenarTablaIntegra(string fecIni, string fecFin)
+        {
+            DataTable Tabla = new DataTable();
+            DataRow row;
+            string total = "";
+            //Llenamos la tabla de Integra
+            //Llenamos los datos según la grilla de FETU
+            Tabla.Columns.Add("DSDES", typeof(string));
+            Tabla.Columns.Add("TOTAL", typeof(string));
+            for (int i = 0; i < grdFetu.Rows.Count; i++)
+            {
+                //Consultamos el número de la sede
+                string sede = grdFetu.Rows[i].Cells[0].Text.ToString();
+                row = Terminal.SelectSede(sede);
+                //Teniendo la sede, consumimos el API de Integra
+                total = consultarIntegra(txtFecIni.Text, txtFecFin.Text, row["DSCODDET"].ToString());
+                if (total != null && total != String.Empty)
+                {
+                    Tabla.Rows.Add(sede, total.Replace("\x022", ""));
+                }
+            }
+            //Si hay datos en la tabla llenamos el datagrid
+            if (Tabla != null)
+            {
+                tituloIntegra.Visible = true;
+                ComparativoIntegra.Visible = true;
+                grdIntegra.DataSource = Tabla;
+                grdIntegra.DataBind();
+                estTabla.Visible = false;
+            }
+            else
+            {
+                tituloIntegra.Visible = false;
+                ComparativoIntegra.Visible = false;
+                grdIntegra.DataSource = null;
+                grdIntegra.DataBind();
+                estTabla.Visible = true;
+            }
+        }
+        protected void colorearTabla()
+        {
+            //Recorremos ambas tablas
+            for (int i = 0; i < grdFetu.Rows.Count; i++)
+            {
+                if (int.Parse(grdFetu.Rows[i].Cells[1].Text.ToString()) != double.Parse(grdIntegra.Rows[i].Cells[1].Text.ToString()))
+                {
+                    grdFetu.Rows[i].BackColor = Color.Red;
+                    grdFetu.Rows[i].ForeColor = Color.White;
+                    grdIntegra.Rows[i].BackColor = Color.Red;
+                    grdIntegra.Rows[i].ForeColor = Color.White;
+                }
             }
         }
         protected void btnSalir_Click(object sender, EventArgs e)
@@ -199,7 +250,7 @@ namespace FETU
             }
             return result_post;
         }
-        
+
         protected void Alert(string title, string message, int type, string buttonText, string foco = "")
         {
             string _type = "";
