@@ -185,6 +185,7 @@
     <Content Include="IntegraVSGo.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="MinTUPendiente.aspx" />
+    <Content Include="OlvidaCredenciales.aspx" />
     <Content Include="Salir.aspx" />
     <Content Include="UltTransaccion.aspx" />
     <Content Include="WebComponents\bootstrap-datetimepicker\build\css\bootstrap-datetimepicker.min.css" />
@@ -415,6 +416,13 @@
     </Compile>
     <Compile Include="MinTUPendiente.aspx.designer.cs">
       <DependentUpon>MinTUPendiente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OlvidaCredenciales.aspx.cs">
+      <DependentUpon>OlvidaCredenciales.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OlvidaCredenciales.aspx.designer.cs">
+      <DependentUpon>OlvidaCredenciales.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Querys\QryEmpresa.cs" />
