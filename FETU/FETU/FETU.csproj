@@ -185,6 +185,7 @@
     <Content Include="IntegraVSGo.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="MinTUPendiente.aspx" />
+    <Content Include="Salir.aspx" />
     <Content Include="UltTransaccion.aspx" />
     <Content Include="WebComponents\bootstrap-datetimepicker\build\css\bootstrap-datetimepicker.min.css" />
     <Content Include="WebComponents\bootstrap-datetimepicker\build\js\bootstrap-datetimepicker.min.js" />
@@ -422,6 +423,13 @@
     <Compile Include="Querys\QryLogin.cs" />
     <Compile Include="Querys\QryTasas.cs" />
     <Compile Include="Querys\QryTerminal.cs" />
+    <Compile Include="Salir.aspx.cs">
+      <DependentUpon>Salir.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Salir.aspx.designer.cs">
+      <DependentUpon>Salir.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
