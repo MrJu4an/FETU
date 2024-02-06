@@ -6,6 +6,7 @@
     <script type="text/javascript">
         $(function () {
             $('#<%= cmbTerminal.ClientID %>').select2();
+            $('#<%= cmbSede.ClientID %>').select2();
         });
     </script>
     <script type="text/javascript">

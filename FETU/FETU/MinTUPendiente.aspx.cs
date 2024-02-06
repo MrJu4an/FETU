@@ -40,6 +40,7 @@ namespace FETU
                         TasasPen.Visible = true;
                         grdTasasPen.DataSource = Tabla;
                         grdTasasPen.DataBind();
+                        estTabla.Visible = false;
                     }
                     else
                     {
@@ -112,6 +113,7 @@ namespace FETU
                     TasasPen.Visible = true;
                     grdTasasPen.DataSource = Tabla;
                     grdTasasPen.DataBind();
+                    estTabla.Visible = false;
                 }
                 else
                 {

@@ -41,6 +41,7 @@ namespace FETU
                         UltFacturas.Visible = true;
                         grdUltTransacciones.DataSource = Tabla;
                         grdUltTransacciones.DataBind();
+                        estTabla.Visible = false;
                     }
                     else
                     {
@@ -111,6 +112,7 @@ namespace FETU
                     UltFacturas.Visible = true;
                     grdUltTransacciones.DataSource = Tabla;
                     grdUltTransacciones.DataBind();
+                    estTabla.Visible = false;
                 }
                 else
                 {

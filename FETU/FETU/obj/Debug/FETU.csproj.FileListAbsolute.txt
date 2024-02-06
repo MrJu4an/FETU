@@ -104,5 +104,6 @@ C:\Users\jsabogal\Documents\Desarrollo\Git\FETU\FETU\FETU\bin\System.Web.Optimiz
 C:\Users\jsabogal\Documents\Desarrollo\Git\FETU\FETU\FETU\bin\Antlr3.Runtime.pdb
 C:\Users\jsabogal\Documents\Desarrollo\Git\FETU\FETU\FETU\bin\Newtonsoft.Json.xml
 C:\Users\jsabogal\Documents\Desarrollo\Git\FETU\FETU\FETU\bin\Microsoft.AspNet.FriendlyUrls.xml
+C:\Users\jsabogal\Documents\Desarrollo\Git\FETU\FETU\FETU\obj\Debug\FETU.csprojResolveAssemblyReference.cache
 C:\Users\jsabogal\Documents\Desarrollo\Git\FETU\FETU\FETU\obj\Debug\FETU.dll
 C:\Users\jsabogal\Documents\Desarrollo\Git\FETU\FETU\FETU\obj\Debug\FETU.pdb

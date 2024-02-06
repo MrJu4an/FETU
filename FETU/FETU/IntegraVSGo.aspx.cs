@@ -114,6 +114,7 @@ namespace FETU
                     ComparativoFetu.Visible = true;
                     grdFetu.DataSource = Tabla;
                     grdFetu.DataBind();
+                    estTabla2.Visible = false;
                 }
                 else
                 {
@@ -121,7 +122,7 @@ namespace FETU
                     ComparativoFetu.Visible = false;
                     grdFetu.DataSource = null;
                     grdFetu.DataBind();
-                    estTabla.Visible = true;
+                    estTabla2.Visible = true;
                 }
 
                 //Llenamos la tabla de Integra
@@ -138,6 +139,7 @@ namespace FETU
                     ComparativoIntegra.Visible = true;
                     grdIntegra.DataSource = Tabla;
                     grdIntegra.DataBind();
+                    estTabla.Visible = false;
                 }
                 else
                 {
