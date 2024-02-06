@@ -246,7 +246,7 @@
                             switch (HttpContext.Current.Session["TipoUsuario"].ToString())
                             {
                                 case "CTEC":
-                                    iconos = new string[] { "fas fa-wrench", "fa fa-cogs", "fas fa-search-minus" };
+                                    iconos = new string[] { "fas fa-laptop", "far fa-chart-bar", "fas fa-search-minus" };
                                     break;
                                 case "TT":
                                     iconos = new string[] { "fa fa-cogs", "fas fa-search-minus" };
@@ -326,7 +326,7 @@
                             <!-- Contenido -->
                             <div class="modal-content">
                                 <!-- Cabecera -->
-                                <div class="modal-header text-center" style="background: #367bbf !important; color: white">
+                                <div class="modal-header text-center" style="background: #5B62A8 !important; color: white">
                                     <h5 class="modal-title" id="staticBackdropLabel">Cambio de credenciales</h5>
                                 </div>
                                 <!-- Cuerpo -->
@@ -454,7 +454,7 @@
             <!-- Contenido -->
             <div class="modal-content">
                 <!-- Cabecera -->
-                <div class="modal-header" style="background: #367bbf !important; color: white">
+                <div class="modal-header" style="background: #5B62A8 !important; color: white">
                     <h5 class="modal-title">Acerca de ...</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>

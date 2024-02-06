@@ -95,7 +95,7 @@ body {
 a {
   color: #1572E8; }
   a:hover, a:focus {
-    color: #1269DB; }
+    color: #2C2E43; }
 
 h1,
 .h1 {
@@ -1379,13 +1379,13 @@ body {
   background: #1572E8 !important; }
 
 .logo-header[data-background-color="blue2"] {
-  background: #1269DB !important; }
+  background: #2C2E43 !important; }
 
 .navbar-header[data-background-color="blue"] {
   background: #1572E8 !important; }
 
 .navbar-header[data-background-color="blue2"] {
-  background: #1269DB !important; }
+  background: #2C2E43 !important; }
 
 .logo-header[data-background-color="purple"] {
   background: #6861CE !important; }
@@ -1531,7 +1531,7 @@ body {
     background-color: #dcdbdb; }
 
 .sidebar[data-background-color="blue2"] {
-  background: #1269DB !important; }
+  background: #2C2E43 !important; }
   .sidebar[data-background-color="blue2"] .user {
     margin-top: 0px;
     padding-top: 12.5px;
@@ -1553,9 +1553,9 @@ body {
         color: #fff !important; }
   .sidebar[data-background-color="blue2"] .nav > .nav-item.active > a, .sidebar[data-background-color="blue2"] .nav > .nav-item.active > a:hover, .sidebar[data-background-color="blue2"] .nav > .nav-item.active > a:focus, .sidebar[data-background-color="blue2"] .nav > .nav-item.active > a[data-toggle=collapse][aria-expanded=true] {
     background: #fff !important;
-    color: #1269DB !important; }
+    color: #2C2E43 !important; }
     .sidebar[data-background-color="blue2"] .nav > .nav-item.active > a p, .sidebar[data-background-color="blue2"] .nav > .nav-item.active > a i, .sidebar[data-background-color="blue2"] .nav > .nav-item.active > a .caret, .sidebar[data-background-color="blue2"] .nav > .nav-item.active > a:hover p, .sidebar[data-background-color="blue2"] .nav > .nav-item.active > a:hover i, .sidebar[data-background-color="blue2"] .nav > .nav-item.active > a:hover .caret, .sidebar[data-background-color="blue2"] .nav > .nav-item.active > a:focus p, .sidebar[data-background-color="blue2"] .nav > .nav-item.active > a:focus i, .sidebar[data-background-color="blue2"] .nav > .nav-item.active > a:focus .caret, .sidebar[data-background-color="blue2"] .nav > .nav-item.active > a[data-toggle=collapse][aria-expanded=true] p, .sidebar[data-background-color="blue2"] .nav > .nav-item.active > a[data-toggle=collapse][aria-expanded=true] i, .sidebar[data-background-color="blue2"] .nav > .nav-item.active > a[data-toggle=collapse][aria-expanded=true] .caret {
-      color: #1269DB !important; }
+      color: #2C2E43 !important; }
   .sidebar[data-background-color="blue2"] .nav .nav-section .text-section, .sidebar[data-background-color="blue2"] .nav .nav-section .sidebar-mini-icon {
     color: #eaeaea; }
   .sidebar[data-background-color="blue2"] .nav .nav-collapse li a .sub-item:before {
@@ -8886,7 +8886,7 @@ body {
   background-color: #1572E8 !important; }
 
 .bg-primary2 {
-  background-color: #1269DB !important; }
+  background-color: #2C2E43 !important; }
 
 .bg-secondary {
   background-color: #6861CE !important; }

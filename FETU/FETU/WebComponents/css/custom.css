@@ -3466,7 +3466,7 @@ a.hiddenanchor {
     background: rgb(249, 249, 249);
     padding: 10px;
     border-radius: 10px;
-    border: solid 1px #1269DB;
+    border: solid 1px #2C2E43;
 }
 
 .registration_form {
@@ -3543,7 +3543,7 @@ form:after {
     text-decoration: underline
 }
 .login_content h1 {
-    color: #1269DB;
+    color: #2C2E43;
     font: normal 25px Helvetica, Arial, sans-serif;
     letter-spacing: -0.05em;
     line-height: 20px;
@@ -3558,13 +3558,13 @@ form:after {
     width: 27%
 }
 .login_content h1:after {
-    background: #1269DB;
-    background: linear-gradient(left, #1269DB 0%, #1269DB 100%);
+    background: #2C2E43;
+    background: linear-gradient(left, #2C2E43 0%, #2C2E43 100%);
     right: 0
 }
 .login_content h1:before {
-    background: #1269DB;
-    background: linear-gradient(right, #1269DB 0%, #1269DB 100%);
+    background: #2C2E43;
+    background: linear-gradient(right, #2C2E43 0%, #2C2E43 100%);
     left: 0
 }
 .login_content h1:before,
@@ -3576,13 +3576,13 @@ form:after {
     width: 20%
 }
 .login_content h1:after {
-    background: #1269DB;
-    background: linear-gradient(left, #1269DB 0%, #1269DB 100%);
+    background: #2C2E43;
+    background: linear-gradient(left, #2C2E43 0%, #2C2E43 100%);
     right: 0
 }
 .login_content h1:before {
-    background: #1269DB;
-    background: linear-gradient(right, #1269DB 0%, #1269DB 100%);
+    background: #2C2E43;
+    background: linear-gradient(right, #2C2E43 0%, #2C2E43 100%);
     left: 0
 }
 .login_content form {
@@ -3609,7 +3609,7 @@ form:after {
     -o-box-shadow: 0 0 2px #ed1c24 inset;
     box-shadow: 0 0 2px #A97AAD inset;
     background-color: #fff;
-    border: 1px solid #1269DB;
+    border: 1px solid #2C2E43;
     outline: none
 }
 #username {
@@ -3631,7 +3631,7 @@ form:after {
     float: right
 }
 .separator {
-    border-top: 1px solid #1269DB;
+    border-top: 1px solid #2C2E43;
     margin-top: 5px;
     padding-top: 5px
 }
