@@ -86,6 +86,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="OC.Core, Version=2.0.0.17347, Culture=neutral, PublicKeyToken=21d5b409dafb75d2, processorArchitecture=MSIL">
       <HintPath>..\packages\OC.Core.2.0.0\lib\net40\OC.Core.dll</HintPath>
       <Private>True</Private>
@@ -302,6 +303,7 @@
     <Content Include="WebComponents\Select2\select2.min.js" />
     <Content Include="WebComponents\sweetAlert2\sweetalert2.all.js" />
     <Content Include="WebComponents\sweetAlert2\sweetalert2.all.min.js" />
+    <None Include="Properties\PublishProfiles\FETU.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />

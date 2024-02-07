@@ -141,7 +141,7 @@ namespace FETU
             fechaActual = DateTime.Now.ToString("MM/dd/yyyy");
             for (int i = 0; i < grdTasasPen.Rows.Count; i++)
             {
-                fechaFila = grdTasasPen.Rows[i].Cells[1].Text.ToString();
+                fechaFila = grdTasasPen.Rows[i].Cells[3].Text.ToString();
                 diferencia = (DateTime.Parse(fechaActual) - DateTime.Parse(fechaFila)).TotalDays;
                 if (diferencia == 1)
                 {

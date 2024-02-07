@@ -10,6 +10,7 @@ using System.Drawing;
 using System.Net;
 using System.Configuration;
 using System.IO;
+using Microsoft.VisualBasic;
 
 namespace FETU
 {
@@ -190,7 +191,7 @@ namespace FETU
             fechaActual = DateTime.Now.ToString("MM/dd/yyyy");
             for (int i = 0; i < grdUltTransacciones.Rows.Count; i++)
             {
-                fechaFila = DateTime.Parse(grdUltTransacciones.Rows[i].Cells[1].Text.ToString()).ToString("MM/dd/yyyy");
+                fechaFila = Strings.Mid(grdUltTransacciones.Rows[i].Cells[1].Text.ToString(), 1, 10);
                 diferencia = (DateTime.Parse(fechaActual) - DateTime.Parse(fechaFila)).TotalDays;
                 if (diferencia == 1)
                 {

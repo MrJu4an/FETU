@@ -3,6 +3,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="contenedor1" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="contenedor2" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+    <asp:Timer ID="Timer1" OnTick="Page_Load" runat="server" Interval="60000" Enabled="true" />
     <div class="card-header text-center">
         <h5><b>DASHBOARD FETU</b></h5>
     </div>
