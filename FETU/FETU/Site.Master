@@ -468,11 +468,11 @@
                                 <img src="Images/logoCtec.png" style="width: 100%;" />
                             </div>
                             <div class="col-xs-12 col-md-8">
-                                <h1>Gopett Online</h1>
+                                <h1>FETU</h1>
                                 <div class="text-right">
                                     <p>
                                         <strong>Versión: </strong>
-                                        <label runat="server" id="lblVersion">23.0.3</label>
+                                        <label runat="server" id="lblVersion">24.0.0</label>
                                     </p>
                                 </div>
                                 <div class="text-left">
