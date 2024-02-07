@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using FETU.Querys;
 using System.Data;
+using System.Drawing;
 
 namespace FETU
 {
@@ -41,6 +42,7 @@ namespace FETU
                         grdTasasPen.DataSource = Tabla;
                         grdTasasPen.DataBind();
                         estTabla.Visible = false;
+                        colorearTabla();
                     }
                     else
                     {
@@ -114,6 +116,7 @@ namespace FETU
                     grdTasasPen.DataSource = Tabla;
                     grdTasasPen.DataBind();
                     estTabla.Visible = false;
+                    colorearTabla();
                 }
                 else
                 {
@@ -126,6 +129,29 @@ namespace FETU
             catch (Exception ex)
             {
                 Alert("Error", ex.Message, 3, "Aceptar");
+            }
+        }
+
+        protected void colorearTabla()
+        {
+            //Tomamos la fecha actual
+            string fechaActual;
+            string fechaFila;
+            double diferencia;
+            fechaActual = DateTime.Now.ToString("MM/dd/yyyy");
+            for (int i = 0; i < grdTasasPen.Rows.Count; i++)
+            {
+                fechaFila = grdTasasPen.Rows[i].Cells[1].Text.ToString();
+                diferencia = (DateTime.Parse(fechaActual) - DateTime.Parse(fechaFila)).TotalDays;
+                if (diferencia == 1)
+                {
+                    grdTasasPen.Rows[i].BackColor = Color.Yellow;
+                }
+                else if (diferencia > 1)
+                {
+                    grdTasasPen.Rows[i].BackColor = Color.Red;
+                    grdTasasPen.Rows[i].ForeColor = Color.White;
+                }
             }
         }
 

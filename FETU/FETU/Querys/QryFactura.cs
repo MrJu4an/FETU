@@ -15,7 +15,7 @@ namespace FETU.Querys
             App.Motor = DatabaseType.Oracle;
             dbs.TypeData = DatabaseType.Oracle;
             dbs.ValidarConexion();
-            QRY = $"SELECT TFNITTT, TFCODTERMINAL, DSDES, MAX(TFFECDIAN) AS TFFECDIAN " +
+            QRY = $"SELECT TFNITTT, TFCODTERMINAL, DSDES, TO_CHAR(MAX(TFFECDIAN), 'MM/DD/YYYY HH24:MI') AS TFFECDIAN " +
                         "FROM FETASASFA " +
                         "INNER JOIN GESUPTIP ON STDES = 'TERMINALES' " +
                         "INNER JOIN GEDETSUPTIP ON DSCODTIP = STCODTIP AND DSCODDET = TFCODTERMINAL " +
@@ -28,7 +28,7 @@ namespace FETU.Querys
             App.Motor = DatabaseType.Oracle;
             dbs.TypeData = DatabaseType.Oracle;
             dbs.ValidarConexion();
-            QRY = $"SELECT TFNITTT, TFCODTERMINAL, DSDES, MAX(TFFECDIAN) AS TFFECDIAN " +
+            QRY = $"SELECT TFNITTT, TFCODTERMINAL, DSDES, TO_CHAR(MAX(TFFECDIAN), 'MM/DD/YYYY HH24:MI') AS TFFECDIAN " +
                         "FROM FETASASFA " +
                         "INNER JOIN GESUPTIP ON STDES = 'TERMINALES' " +
                         "INNER JOIN GEDETSUPTIP ON DSCODTIP = STCODTIP AND DSCODDET = TFCODTERMINAL " +
@@ -42,7 +42,7 @@ namespace FETU.Querys
             App.Motor = DatabaseType.Oracle;
             dbs.TypeData = DatabaseType.Oracle;
             dbs.ValidarConexion();
-            QRY = $"SELECT TFNITTT, TFCODTERMINAL, DSDES, MAX(TFFECDIAN) AS TFFECDIAN " +
+            QRY = $"SELECT TFNITTT, TFCODTERMINAL, DSDES, TO_CHAR(MAX(TFFECDIAN), 'MM/DD/YYYY HH24:MI') AS TFFECDIAN " +
                         "FROM FETASASFA " +
                         "INNER JOIN GESUPTIP ON STDES = 'TERMINALES' " +
                         "INNER JOIN GEDETSUPTIP ON DSCODTIP = STCODTIP AND DSCODDET = TFCODTERMINAL " +

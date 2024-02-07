@@ -13,15 +13,6 @@ namespace FETU {
     public partial class Inicio {
         
         /// <summary>
-        /// tituloPendientes control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl tituloPendientes;
-        
-        /// <summary>
         /// TasasPen control.
         /// </summary>
         /// <remarks>
@@ -47,15 +38,6 @@ namespace FETU {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label estTabla;
-        
-        /// <summary>
-        /// tituloTransacciones control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl tituloTransacciones;
         
         /// <summary>
         /// UltFacturas control.

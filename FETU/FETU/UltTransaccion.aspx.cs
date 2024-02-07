@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using FETU.Querys;
 using System.Data;
 using System.Configuration;
+using System.Drawing;
 
 namespace FETU
 {
@@ -42,6 +43,7 @@ namespace FETU
                         grdUltTransacciones.DataSource = Tabla;
                         grdUltTransacciones.DataBind();
                         estTabla.Visible = false;
+                        colorearTabla();
                     }
                     else
                     {
@@ -113,6 +115,7 @@ namespace FETU
                     grdUltTransacciones.DataSource = Tabla;
                     grdUltTransacciones.DataBind();
                     estTabla.Visible = false;
+                    colorearTabla();
                 }
                 else
                 {
@@ -125,6 +128,29 @@ namespace FETU
             catch (Exception ex)
             {
                 Alert("Error", ex.Message, 3, "Aceptar");
+            }
+        }
+
+        protected void colorearTabla()
+        {
+            //Tomamos la fecha actual
+            string fechaActual;
+            string fechaFila;
+            double diferencia;
+            fechaActual = DateTime.Now.ToString("MM/dd/yyyy");
+            for (int i = 0; i < grdUltTransacciones.Rows.Count; i++)
+            {
+                fechaFila = DateTime.Parse(grdUltTransacciones.Rows[i].Cells[1].Text.ToString()).ToString("MM/dd/yyyy");
+                diferencia = (DateTime.Parse(fechaActual) - DateTime.Parse(fechaFila)).TotalDays;
+                if (diferencia == 1)
+                {
+                    grdUltTransacciones.Rows[i].BackColor = Color.Yellow;
+                }
+                else if (diferencia > 1)
+                {
+                    grdUltTransacciones.Rows[i].BackColor = Color.Red;
+                    grdUltTransacciones.Rows[i].ForeColor = Color.White;
+                }
             }
         }
 

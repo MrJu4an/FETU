@@ -37,15 +37,16 @@ namespace FETU
                     if (Tabla != null)
                     {
                         TasasPen.Visible = true;
-                        tituloPendientes.Visible = true;
+                        //tituloPendientes.Visible = true;
                         grdTasasPen.DataSource = Tabla;
                         grdTasasPen.DataBind();
                         estTabla.Visible = false;
+                        colorearTablaTuPendientes();
                     }
                     else
                     {
                         TasasPen.Visible = false;
-                        tituloPendientes.Visible = false;
+                        //tituloPendientes.Visible = false;
                         grdTasasPen.DataSource = null;
                         grdTasasPen.DataBind();
                         estTabla.Visible = true;
@@ -56,15 +57,16 @@ namespace FETU
                     if (Tabla != null)
                     {
                         UltFacturas.Visible = true;
-                        tituloTransacciones.Visible = true;
+                        //tituloTransacciones.Visible = true;
                         grdUltTransacciones.DataSource = Tabla;
                         grdUltTransacciones.DataBind();
                         estTabla2.Visible = false;
+                        colorearTablaUltTransacciones();
                     }
                     else
                     {
                         UltFacturas.Visible = false;
-                        tituloTransacciones.Visible = false;
+                        //tituloTransacciones.Visible = false;
                         grdUltTransacciones.DataSource = null;
                         grdUltTransacciones.DataBind();
                         estTabla2.Visible = true;
@@ -75,7 +77,7 @@ namespace FETU
                     fecha2 = DateTime.Now.ToString("MM/dd/yyyy");
                     llenarTablaFETU(fecha1, fecha2, "0", "0");
                     llenarTablaIntegra(fecha1, fecha2);
-                    colorearTabla();
+                    colorearTablaIntegraVsGo();
                 }
                 catch (Exception ex)
                 {
@@ -158,7 +160,49 @@ namespace FETU
                 estTablaIntegra.Visible = true;
             }
         }
-        protected void colorearTabla()
+        protected void colorearTablaTuPendientes()
+        {
+            //Tomamos la fecha actual
+            string fechaActual;
+            string fechaFila;
+            double diferencia;
+            fechaActual = DateTime.Now.ToString("MM/dd/yyyy");
+            for (int i = 0; i < grdTasasPen.Rows.Count; i++)
+            {
+                fechaFila = grdTasasPen.Rows[i].Cells[1].Text.ToString();
+                diferencia = (DateTime.Parse(fechaActual) - DateTime.Parse(fechaFila)).TotalDays;
+                if (diferencia == 1)
+                {
+                    grdTasasPen.Rows[i].BackColor = Color.Yellow;
+                } else if (diferencia > 1)
+                {
+                    grdTasasPen.Rows[i].BackColor = Color.Red;
+                    grdTasasPen.Rows[i].ForeColor = Color.White;
+                }
+            }
+        }
+        protected void colorearTablaUltTransacciones()
+        {
+            //Tomamos la fecha actual
+            string fechaActual;
+            string fechaFila;
+            double diferencia;
+            fechaActual = DateTime.Now.ToString("MM/dd/yyyy");
+            for (int i = 0; i < grdUltTransacciones.Rows.Count; i++)
+            {
+                fechaFila = DateTime.Parse(grdUltTransacciones.Rows[i].Cells[1].Text.ToString()).ToString("MM/dd/yyyy");
+                diferencia = (DateTime.Parse(fechaActual) - DateTime.Parse(fechaFila)).TotalDays;
+                if (diferencia == 1)
+                {
+                    grdUltTransacciones.Rows[i].BackColor = Color.Yellow;
+                } else if (diferencia > 1)
+                {
+                    grdUltTransacciones.Rows[i].BackColor = Color.Red;
+                    grdUltTransacciones.Rows[i].ForeColor = Color.White;
+                }
+            }
+        }
+        protected void colorearTablaIntegraVsGo()
         {
             //Recorremos ambas tablas
             for (int i = 0; i < grdFetu.Rows.Count; i++)

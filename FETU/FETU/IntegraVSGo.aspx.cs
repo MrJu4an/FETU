@@ -90,9 +90,15 @@ namespace FETU
                     Alert("Error", "Seleccione la fecha final de búsqueda", 3, "Aceptar");
                     return;
                 }
-                if (Convert.ToDateTime(txtFecFin.Text) > Convert.ToDateTime(txtFecIni.Text))
+
+                if (Convert.ToDateTime(txtFecFin.Text) < Convert.ToDateTime(txtFecIni.Text))
                 {
                     Alert("Error", "La fecha final no puede ser inferior a la inicial", 3, "Aceptar");
+                    return;
+                }
+                if ((DateTime.Parse(txtFecFin.Text) - DateTime.Parse(txtFecIni.Text)).TotalDays > 30)
+                {
+                    Alert("Error", "El rango de consulta no puede sobre pasar 30 días", 3, "Aceptar");
                     return;
                 }
                 //if (cmbTerminal.SelectedIndex == 0)
