@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Salir.aspx.cs" Inherits="FETU.Salir" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Salir.aspx.cs" Inherits="FETU.Salir" Culture="en-US"%>
 
 <!DOCTYPE html>
 

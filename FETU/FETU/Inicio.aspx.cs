@@ -82,7 +82,7 @@ namespace FETU
                 }
                 catch (Exception ex)
                 {
-                    Alert("Error", ex.Message, 3, "Aceptar");
+                    Alert("Error Load", ex.Message, 3, "Aceptar");
                 }
             }
         }

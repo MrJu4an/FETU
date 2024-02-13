@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="OlvidaCredenciales.aspx.cs" Inherits="FETU.OlvidaCredenciales" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="OlvidaCredenciales.aspx.cs" Inherits="FETU.OlvidaCredenciales" Culture="en-US" %>
 
 <!DOCTYPE html>
 <html lang="en">

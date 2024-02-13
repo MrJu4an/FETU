@@ -51,3 +51,4 @@ C:\Users\jsabogal\Documents\Desarrollo\Git\FETU\FETU\FETU\bin\Newtonsoft.Json.xm
 C:\Users\jsabogal\Documents\Desarrollo\Git\FETU\FETU\FETU\bin\Microsoft.AspNet.FriendlyUrls.xml
 C:\Users\jsabogal\Documents\Desarrollo\Git\FETU\FETU\FETU\obj\Release\FETU.dll
 C:\Users\jsabogal\Documents\Desarrollo\Git\FETU\FETU\FETU\obj\Release\FETU.pdb
+C:\Users\jsabogal\Documents\Desarrollo\Git\FETU\FETU\FETU\obj\Release\FETU.csprojResolveAssemblyReference.cache

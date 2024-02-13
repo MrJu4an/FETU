@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="UltTransaccion.aspx.cs" Inherits="FETU.UltTransaccion" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="UltTransaccion.aspx.cs" Inherits="FETU.UltTransaccion" Culture="en-US" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="contenedor1" runat="server">
     <link href="WebComponents/Select2/select2.min.css" rel="stylesheet" />

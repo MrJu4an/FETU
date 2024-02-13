@@ -1,10 +1,14 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Inicio.aspx.cs" Inherits="FETU.Inicio" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Inicio.aspx.cs" Inherits="FETU.Inicio" Culture="en-US" %>
+
+<%@ Import Namespace="System.Data" %>
+<%@ Import Namespace="System.Web" %>
+<%@ Import Namespace="FETU.Querys" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="contenedor1" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="contenedor2" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-    <asp:Timer ID="Timer1" OnTick="Page_Load" runat="server" Interval="60000" Enabled="true" />
+    <asp:Timer ID="Timer1" OnTick="Page_Load" runat="server" Interval="300000" Enabled="true" />
     <div class="card-header text-center">
         <h5><b>DASHBOARD FETU</b></h5>
     </div>
@@ -15,6 +19,7 @@
             <button class="nav-link active" id="nav-tu-pen-tab" data-toggle="tab" data-target="#nav-tu-pen" type="button" role="tab" aria-controls="nav-tu-pen" aria-selected="true">TU Pendientes</button>
             <button class="nav-link" id="nav-ult-tra-tab" data-toggle="tab" data-target="#nav-ult-tra" type="button" role="tab" aria-controls="nav-ult-tra" aria-selected="false">Últimas transacciones</button>
             <button class="nav-link" id="nav-int-go-tab" data-toggle="tab" data-target="#nav-int-go" type="button" role="tab" aria-controls="nav-int-go" aria-selected="false">Integra VS Gopett Online</button>
+            <button class="nav-link" id="nav-tu-even-tab" data-toggle="tab" data-target="#nav-tu-even" type="button" role="tab" aria-controls="nav-tu-even" aria-selected="false">Eventos Día de Hoy</button>
         </div>
     </nav>
     <div class="tab-content" id="nav-tabContent">
@@ -96,8 +101,103 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div id="IntGo" class="tab-content">
+        <div class="tab-pane fade" id="nav-tu-even" role="tabpanel" aria-labelledby="nav-tu-even-tab">
+            <br />
+            <br />
+            <div id="Eventos" runat="server" visible="true" style="display: flex; justify-content: center;">
+                <div class="accordion" id="acordionEventos" style="width: 55%;">
+                    <% 
+                        QryEventos Eventos = new QryEventos();
+                        DataTable dt = new DataTable();
+                        string fechaActual = DateTime.Now.ToString("MM/dd/yyyy");
+
+                        dt = Eventos.selectSedesEventos(fechaActual, fechaActual);
+                        if (dt != null)
+                        {
+                            foreach (DataRow dr in dt.Rows)
+                            {
+                    %>
+                    <div class="card" style="padding: 1px;">
+                        <div class="card-header" id="heading-One">
+                            <button class="btn btn-outline-primary btn-lg btn-block text-left" type="button" data-toggle="collapse" data-target="#sede<%=dr["EVSEDTER"].ToString() %>" aria-expanded="false" aria-controls="sede<%=dr["EVSEDTER"].ToString() %>">
+                                <%=dr["DSDES"].ToString() %>
+                            </button>
+                        </div>
+
+                        <div id="sede<%=dr["EVSEDTER"].ToString() %>" class="collapse" aria-labelledby="heading-One" data-parent="acordionEventos">
+                            <div class="card-body">
+                                <% 
+                                    DataTable dt2 = new DataTable();
+                                    int contFechas = 1;
+                                    dt2 = Eventos.selectFechasEventos(fechaActual, fechaActual, dr["EVSEDTER"].ToString());
+                                    if (dt2 != null)
+                                    {
+                                        foreach (DataRow dr2 in dt2.Rows)
+                                        {
+                                            string nomDiv = "fecha_" + contFechas + "_" + dr["EVSEDTER"].ToString();
+                                %>
+                                <div class="card" style="padding: 1px;">
+                                    <div class="card-header" id="heading-Two">
+                                        <h2 class="mb-0">
+                                            <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#<%=nomDiv %>" aria-expanded="false" aria-controls="<%=nomDiv %>">
+                                                <%=dr2["EVFECMON"].ToString() %>
+                                            </button>
+                                        </h2>
+                                    </div>
+
+                                    <div id="<%=nomDiv%>" class="collapse" aria-labelledby="heading-Two" data-parent="acordionFechas">
+                                        <div class="card-body">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Hora Evento</th>
+                                                        <th scope="col">Pendientes</th>
+                                                        <th scope="col">OK</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <%
+                                                        DataTable dt3 = new DataTable();
+                                                        string fechaBusqueda = dr2["EVFECMON"].ToString();
+                                                        int contHoras = 1;
+                                                        dt3 = Eventos.selectEventos(fechaBusqueda, dr["EVSEDTER"].ToString());
+                                                        if (dt3 != null)
+                                                        {
+                                                            foreach (DataRow dr3 in dt3.Rows)
+                                                            {
+                                                    %>
+                                                    <tr>
+                                                        <th scope="col"><%=contHoras %></th>
+                                                        <td><%=dr3["EVHORMON"].ToString() %></td>
+                                                        <td><%=dr3["EVCANPEN"].ToString() %></td>
+                                                        <td><%=dr3["EVCANOK"].ToString() %></td>
+                                                    </tr>
+                                                    <%
+                                                                contHoras++;
+                                                            }
+                                                        }
+                                                    %>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <%
+                                            contFechas++;
+                                        }
+                                    }
+                                %>
+                            </div>
+                        </div>
+                    </div>
+                    <%
+                            }
+                        }
+                    %>
+                </div>
+            </div>
+        </div>
     </div>
     <%--<div class="card-body">
         <div class="row">
