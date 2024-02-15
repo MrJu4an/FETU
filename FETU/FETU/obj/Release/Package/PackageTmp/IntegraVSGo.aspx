@@ -21,6 +21,27 @@
             campo.value = string;
         };
     </script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', { 'packages': ['bar'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable(<%=getData()%>);
+
+            if (data != null && data != "") {
+                var options = {
+                    chart: {
+                        title: 'Comparativo Integra Vs GO',
+                        subtitle: '',
+                    },
+                    bars: 'horizontal' // Required for Material Bar Charts.
+                };
+                var chart = new google.charts.Bar(document.getElementById('barchart_material'));
+                chart.draw(data, google.charts.Bar.convertOptions(options));
+            }
+        }
+    </script>
     <style type="text/css">
         .spinner-container {
             position: fixed;
@@ -134,6 +155,12 @@
     </div>
     <br />
     <br />
+    <!-- Grafico -->
+    <div id="GraficoComparativo" style="display: flex; justify-content: center;" runat="server" visible="false">
+        <div id="barchart_material" style="width: 900px; height: 400px;"></div>
+    </div>
+    <br />
+    <br />
     <!-- Tablas -->
     <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-12 col-12">
@@ -175,12 +202,12 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="contenedor3" runat="server">
     <script type="text/javascript">
         $("#dtpFecIni").datetimepicker({
-            format: 'MMM DD/YYYY',
+            format: 'MM/DD/YYYY',
             locale: 'es'
         });
 
         $("#dtpFecFin").datetimepicker({
-            format: 'MMM DD/YYYY',
+            format: 'MM/DD/YYYY',
             locale: 'es'
         });
     </script>

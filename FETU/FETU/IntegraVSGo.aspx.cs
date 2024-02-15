@@ -91,7 +91,7 @@ namespace FETU
                     return;
                 }
 
-                if (Convert.ToDateTime(txtFecFin.Text) < Convert.ToDateTime(txtFecIni.Text))
+                if (DateTime.Parse(txtFecFin.Text) < DateTime.Parse(txtFecIni.Text))
                 {
                     Alert("Error", "La fecha final no puede ser inferior a la inicial", 3, "Aceptar");
                     return;
@@ -212,6 +212,50 @@ namespace FETU
                 }
             }
         }
+
+        protected string getData()
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                dt.Columns.Add(new DataColumn("Terminales", typeof(string)));
+                dt.Columns.Add(new DataColumn("Integra", typeof(int)));
+                dt.Columns.Add(new DataColumn("GO", typeof(int)));
+                string strData = string.Empty;
+
+                if (grdFetu.Rows.Count > 0)
+                {
+                    for (int i = 0; i < grdFetu.Rows.Count; i++)
+                    {
+                        dt.Rows.Add(new object[] { grdFetu.Rows[i].Cells[0].Text.ToString(), grdIntegra.Rows[i].Cells[1].Text.ToString(), grdFetu.Rows[i].Cells[1].Text.ToString() });
+                    }
+                    strData = "[['Terminales', 'Integra', 'GO'],";
+
+                    foreach (DataRow dr in dt.Rows)
+                    {
+                        strData += "[";
+                        strData += $"'{dr[0]}',{dr[1]},{dr[2]}";
+                        strData += "],";
+                    }
+
+                    strData += "]";
+
+                    GraficoComparativo.Visible = true;
+                }
+                else
+                {
+                    GraficoComparativo.Visible = false;
+                }
+                
+                return strData;
+            }
+            catch (Exception ex)
+            {
+                Alert("Error", ex.Message, 3, "Aceptar");
+                return null;
+            }
+        }
+
         protected void btnSalir_Click(object sender, EventArgs e)
         {
             try
@@ -256,6 +300,7 @@ namespace FETU
             }
             return result_post;
         }
+        
 
         protected void Alert(string title, string message, int type, string buttonText, string foco = "")
         {

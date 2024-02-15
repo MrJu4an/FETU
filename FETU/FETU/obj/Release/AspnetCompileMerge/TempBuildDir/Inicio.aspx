@@ -134,52 +134,82 @@
                                     {
                                         foreach (DataRow dr2 in dt2.Rows)
                                         {
-                                            string nomDiv = "fecha_" + contFechas + "_" + dr["EVSEDTER"].ToString();
+                                            string nomDivFechas = "fecha_" + contFechas + "_" + dr["EVSEDTER"].ToString();
                                 %>
                                 <div class="card" style="padding: 1px;">
                                     <div class="card-header" id="heading-Two">
                                         <h2 class="mb-0">
-                                            <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#<%=nomDiv %>" aria-expanded="false" aria-controls="<%=nomDiv %>">
+                                            <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#<%=nomDivFechas %>" aria-expanded="false" aria-controls="<%=nomDivFechas %>">
                                                 <%=dr2["EVFECMON"].ToString() %>
                                             </button>
                                         </h2>
                                     </div>
 
-                                    <div id="<%=nomDiv%>" class="collapse" aria-labelledby="heading-Two" data-parent="acordionFechas">
+                                    <div id="<%=nomDivFechas%>" class="collapse" aria-labelledby="heading-Two" data-parent="acordionFechas">
                                         <div class="card-body">
-                                            <table class="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">#</th>
-                                                        <th scope="col">Hora Evento</th>
-                                                        <th scope="col">Pendientes</th>
-                                                        <th scope="col">OK</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <%
-                                                        DataTable dt3 = new DataTable();
-                                                        string fechaBusqueda = dr2["EVFECMON"].ToString();
-                                                        int contHoras = 1;
-                                                        dt3 = Eventos.selectEventos(fechaBusqueda, dr["EVSEDTER"].ToString());
-                                                        if (dt3 != null)
-                                                        {
-                                                            foreach (DataRow dr3 in dt3.Rows)
-                                                            {
-                                                    %>
-                                                    <tr>
-                                                        <th scope="col"><%=contHoras %></th>
-                                                        <td><%=dr3["EVHORMON"].ToString() %></td>
-                                                        <td><%=dr3["EVCANPEN"].ToString() %></td>
-                                                        <td><%=dr3["EVCANOK"].ToString() %></td>
-                                                    </tr>
-                                                    <%
-                                                                contHoras++;
-                                                            }
-                                                        }
-                                                    %>
-                                                </tbody>
-                                            </table>
+                                            <%
+                                                DataTable dt3 = new DataTable();
+                                                int contHoras = 1;
+                                                dt3 = Eventos.selectHorasEventos(dr2["EVFECMON"].ToString(), dr2["EVFECMON"].ToString(), dr["EVSEDTER"].ToString());
+                                                if (dt3 != null)
+                                                {
+                                                    foreach (DataRow dr3 in dt3.Rows)
+                                                    {
+                                                        string nomDivHoras = "hora_" + contHoras + "_" + dr["EVSEDTER"].ToString();
+                                            %>
+                                            <div class="card" style="padding: 1px;">
+                                                <div class="card-header" id="heading-Three">
+                                                    <h2 class="mb-0">
+                                                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#<%=nomDivHoras %>" aria-expanded="false" aria-controls="<%=nomDivHoras %>">
+                                                            <%=dr3["EVHORMON"].ToString() %>
+                                                        </button>
+                                                    </h2>
+                                                </div>
+
+                                                <div id="<%=nomDivHoras%>" class="collapse" aria-labelledby="heading-Three" data-parent="acordionHoras">
+                                                    <div class="card-body">
+                                                        <table class="table">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th scope="col">#</th>
+                                                                    <th scope="col">Fecha tasa</th>
+                                                                    <th scope="col">Pendientes</th>
+                                                                    <th scope="col">OK</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <%
+                                                                    DataTable dt4 = new DataTable();
+                                                                    string fechaBusqueda = dr2["EVFECMON"].ToString();
+                                                                    string horaBusqueda = dr3["EVHORMON"].ToString();
+                                                                    int contEventos = 1;
+                                                                    dt4 = Eventos.selectEventos(fechaBusqueda, horaBusqueda, dr["EVSEDTER"].ToString());
+                                                                    if (dt4 != null)
+                                                                    {
+                                                                        foreach (DataRow dr4 in dt4.Rows)
+                                                                        {
+                                                                %>
+                                                                <tr>
+                                                                    <th scope="col"><%=contEventos %></th>
+                                                                    <td><%=dr4["EVFECTU"].ToString()%></td>
+                                                                    <td><%=dr4["EVCANPEN"].ToString()%></td>
+                                                                    <td><%=dr4["EVCANOK"].ToString()%></td>
+                                                                </tr>
+                                                                <%
+                                                                            contEventos++;
+                                                                        }
+                                                                    }
+                                                                %>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <%
+                                                        contHoras++;
+                                                    }
+                                                }
+                                            %>
                                         </div>
                                     </div>
                                 </div>
@@ -199,89 +229,6 @@
             </div>
         </div>
     </div>
-    <%--<div class="card-body">
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                <div class="card-header text-center" id="tituloPendientes" runat="server" visible="false">
-                    <h6><b>TU Pendientes</b></h6>
-                </div>
-                <div id="TasasPen" runat="server" visible="false" class="row" style="padding-top: 20px; display: flex; justify-content: center">
-                    <div class="" style="overflow-x: auto;">
-                        <asp:GridView ID="grdTasasPen" runat="server" CssClass="table table-striped table-bordered" AutoGenerateColumns="False">
-                            <Columns>
-                                <asp:BoundField DataField="DSDES" HeaderText="Nombre Terminal" />
-                                <asp:BoundField DataField="TPFECTASA" HeaderText="Fecha" />
-                                <asp:BoundField DataField="TPTIPFAC" HeaderText="Tipo de factura" />
-                                <asp:BoundField DataField="TPCANTIDAD" HeaderText="Cantidad" />
-                            </Columns>
-                        </asp:GridView>
-
-                        <asp:Label ID="estTabla" Visible="false" runat="server" Text="No se encontraron registros de facturación."></asp:Label>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                <div class="card-header text-center" id="tituloTransacciones" runat="server" visible="false">
-                    <h6><b>Últimas transacciones</b></h6>
-                </div>
-                <div id="UltFacturas" runat="server" visible="false" class="row" style="padding-top: 20px; display: flex; justify-content: center">
-                    <div class="" style="overflow-x: auto;">
-                        <asp:GridView ID="grdUltTransacciones" runat="server" CssClass="table table-striped table-bordered" AutoGenerateColumns="False">
-                            <Columns>
-                                <asp:BoundField DataField="DSDES" HeaderText="Nombre Terminal" />
-                                <asp:BoundField DataField="TFFECDIAN" HeaderText="Fecha" />
-                            </Columns>
-                        </asp:GridView>
-
-                        <asp:Label ID="estTabla2" Visible="false" runat="server" Text="No se encontraron registros de facturación."></asp:Label>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br />
-        <br />
-        <div class="card-header text-center">
-            <h6><b>COMPARATIVA INTEGRA</b></h6>
-        </div>
-        <br />
-        <br />
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                <div class="card-header text-center" id="tituloIntegra" runat="server" visible="false">
-                    <h6><b>INTEGRA</b></h6>
-                </div>
-                <div id="ComparativoIntegra" runat="server" visible="false" class="row" style="padding-top: 20px; display: flex; justify-content: center">
-                    <div class="" style="overflow-x: auto;">
-                        <asp:GridView ID="grdIntegra" runat="server" CssClass="table table-striped table-bordered" AutoGenerateColumns="False">
-                            <Columns>
-                                <asp:BoundField DataField="DSDES" HeaderText="Nombre Sede" />
-                                <asp:BoundField DataField="TOTAL" HeaderText="Cantidad" />
-                            </Columns>
-                        </asp:GridView>
-
-                        <asp:Label ID="estTablaIntegra" Visible="false" runat="server" Text="No se encontraron registros de facturación."></asp:Label>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                <div class="card-header text-center" id="tituloFetu" runat="server" visible="false">
-                    <h6><b>GOPETT ONLINE</b></h6>
-                </div>
-                <div id="ComparativoFetu" runat="server" visible="false" class="row" style="padding-top: 20px; display: flex; justify-content: center">
-                    <div class="" style="overflow-x: auto;">
-                        <asp:GridView ID="grdFetu" runat="server" CssClass="table table-striped table-bordered" AutoGenerateColumns="False">
-                            <Columns>
-                                <asp:BoundField DataField="DSDES" HeaderText="Nombre Sede" />
-                                <asp:BoundField DataField="TOTAL" HeaderText="Cantidad" />
-                            </Columns>
-                        </asp:GridView>
-
-                        <asp:Label ID="estTablaFetu" Visible="false" runat="server" Text="No se encontraron registros de facturación."></asp:Label>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>--%>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="contenedor3" runat="server">
 </asp:Content>

@@ -70,16 +70,51 @@ namespace FETU.Querys
             return dbs.OpenData(QRY);
         }
 
-        public DataTable selectEventos(string fecha, string sede)
+        public DataTable selectHorasEventos(string fechaIni, string fechaFin, string sede)
         {
             App.Motor = DatabaseType.Oracle;
             dbs.TypeData = DatabaseType.Oracle;
             dbs.ValidarConexion();
-            QRY = "SELECT TO_CHAR(EVHORMON, 'HH24:MI') AS EVHORMON, EVCANPEN, EVCANOK " +
-                    "FROM EVENTOS " +
-                    $"WHERE EVFECMON = TO_DATE('{fecha}','MM/DD/YYYY') " +
-                    $"AND EVSEDTER = '{sede}' " +
-                    "ORDER BY EVHORMON ";
+            QRY = "SELECT DISTINCT(TO_CHAR(EVHORMON, 'HH24:MI')) AS EVHORMON " +
+                        "FROM EVENTOS " +
+                        $"WHERE EVFECMON BETWEEN TO_DATE('{fechaIni}','MM/DD/YYYY') " +
+                        $"AND TO_DATE('{fechaFin}','MM/DD/YYYY') " +
+                        $"AND EVSEDTER = '{sede}' " +
+                        "ORDER BY EVHORMON ";
+            return dbs.OpenData(QRY);
+        }
+
+        public DataTable selectEventos(string fecha, string hora, string sede)
+        {
+            App.Motor = DatabaseType.Oracle;
+            dbs.TypeData = DatabaseType.Oracle;
+            dbs.ValidarConexion();
+            QRY = "SELECT TO_CHAR(EVFECTU, 'MM/DD/YYYY') AS EVFECTU, EVCANPEN, EVCANOK " +
+                        "FROM EVENTOS " +
+                        $"WHERE EVFECMON = TO_DATE('{fecha}','MM/DD/YYYY') " +
+                        $"AND EVHORMON = TO_DATE('{hora}','HH24:MI') " +
+                        $"AND EVSEDTER = '{sede}' " + 
+                        "ORDER BY EVFECTU";
+            return dbs.OpenData(QRY);
+        }
+
+        public DataTable selectUltimosEventos()
+        {
+            App.Motor = DatabaseType.Oracle;
+            dbs.TypeData = DatabaseType.Oracle;
+            dbs.ValidarConexion();
+            QRY = "SELECT EVSEDTER, DSDES, EVCANPEN, EVCANOK " +
+                        "FROM EVENTOS EV1 " +
+                        "INNER JOIN GESUPTIP ON STDES = 'TERMINALES' " +
+                        "INNER JOIN GEDETSUPTIP ON DSCODTIP = STCODTIP AND DSCODDET = EVSEDTER " +
+                        "WHERE EVFECMON = TO_DATE((SELECT TO_CHAR(MAX(EVFECMON), 'MM/DD/YYYY') AS EVFECMON " +
+                                                    "FROM EVENTOS EV2 " +
+                                                    "WHERE EV1.EVSEDTER = EV2.EVSEDTER), 'MM/DD/YYYY') " +
+                        "AND EVHORMON = TO_DATE((SELECT TO_CHAR(MAX(EVHORMON), 'HH24:MI') AS EVFECMON " +
+                                                    "FROM EVENTOS EV3 " +
+                                                    "WHERE EV1.EVSEDTER = EV3.EVSEDTER " +
+                                                    "AND EV1.EVFECMON = EV3.EVFECMON), 'HH24:MI') " +
+                        "GROUP BY EVSEDTER, DSDES, EVCANPEN, EVCANOK ";
             return dbs.OpenData(QRY);
         }
     }

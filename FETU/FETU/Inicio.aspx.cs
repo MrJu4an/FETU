@@ -175,7 +175,8 @@ namespace FETU
                 if (diferencia == 1)
                 {
                     grdTasasPen.Rows[i].BackColor = Color.Yellow;
-                } else if (diferencia > 1)
+                }
+                else if (diferencia > 1)
                 {
                     grdTasasPen.Rows[i].BackColor = Color.Red;
                     grdTasasPen.Rows[i].ForeColor = Color.White;
@@ -196,7 +197,8 @@ namespace FETU
                 if (diferencia == 1)
                 {
                     grdUltTransacciones.Rows[i].BackColor = Color.Yellow;
-                } else if (diferencia > 1)
+                }
+                else if (diferencia > 1)
                 {
                     grdUltTransacciones.Rows[i].BackColor = Color.Red;
                     grdUltTransacciones.Rows[i].ForeColor = Color.White;
