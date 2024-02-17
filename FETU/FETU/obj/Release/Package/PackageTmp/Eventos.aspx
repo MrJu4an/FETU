@@ -272,12 +272,12 @@
                                                 </table>
                                             </div>
                                         </div>
-                                        <%
-                                                    contHoras++;
-                                                }
-                                            }
-                                        %>
                                     </div>
+                                    <%
+                                                contHoras++;
+                                            }
+                                        }
+                                    %>
                                 </div>
                             </div>
                         </div>

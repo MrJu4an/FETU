@@ -21,7 +21,7 @@ namespace FETU.Querys
                         "INNER JOIN GEDETSUPTIP ON DSCODTIP = STCODTIP AND DSCODDET = EVSEDTER " +
                         $"WHERE EVFECMON BETWEEN TO_DATE('{fechaIni}','MM/DD/YYYY') " +
                         $"AND TO_DATE('{fechaFin}','MM/DD/YYYY') " +
-                        "ORDER BY EVSEDTER";
+                        "ORDER BY DSDES ";
             return dbs.OpenData(QRY);
         }
 
@@ -37,7 +37,7 @@ namespace FETU.Querys
                         $"WHERE EVFECMON BETWEEN TO_DATE('{fechaIni}','MM/DD/YYYY') " +
                         $"AND TO_DATE('{fechaFin}','MM/DD/YYYY') " +
                         $"AND EVSEDTER = '{sede}' " +
-                        "ORDER BY EVSEDTER";
+                        "ORDER BY DSDES ";
             return dbs.OpenData(QRY);
         }
 
@@ -53,7 +53,7 @@ namespace FETU.Querys
                         $"WHERE EVFECMON BETWEEN TO_DATE('{fechaIni}','MM/DD/YYYY') " +
                         $"AND TO_DATE('{fechaFin}','MM/DD/YYYY') " +
                         $"AND EVNITTT = '{nit}' " +
-                        "ORDER BY EVSEDTER";
+                        "ORDER BY DSDES ";
             return dbs.OpenData(QRY);
         }
 
@@ -66,7 +66,8 @@ namespace FETU.Querys
                         "FROM EVENTOS " +
                         $"WHERE EVFECMON BETWEEN TO_DATE('{fechaIni}','MM/DD/YYYY') " +
                         $"AND TO_DATE('{fechaFin}','MM/DD/YYYY') " + 
-                        $"AND EVSEDTER = '{sede}' ";
+                        $"AND EVSEDTER = '{sede}' " +
+                        "ORDER BY EVFECMON DESC ";
             return dbs.OpenData(QRY);
         }
 

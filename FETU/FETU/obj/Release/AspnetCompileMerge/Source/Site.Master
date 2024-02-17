@@ -472,7 +472,7 @@
                                 <div class="text-right">
                                     <p>
                                         <strong>Versión: </strong>
-                                        <label runat="server" id="lblVersion">24.0.0</label>
+                                        <label runat="server" id="lblVersion">24.0.1</label>
                                     </p>
                                 </div>
                                 <div class="text-left">
@@ -499,7 +499,7 @@
                             <p>
                                 <strong>Fecha de Actualización:</strong>
                                 <br />
-                                <label id="lblFechaActualizacion" runat="server">Diciembre 13, 2023</label>
+                                <label id="lblFechaActualizacion" runat="server">Febrero 16, 2024</label>
                             </p>
                         </div>
                         <div class="col-xs-3 text-right mt--2">
