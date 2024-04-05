@@ -65,6 +65,7 @@ namespace FETU.Querys
                     "FROM FETASASFA T1 " +
                     "INNER JOIN GESUPTIP ON STDES = 'TERMINALES' " +
                     "INNER JOIN GEDETSUPTIP ON DSCODTIP = STCODTIP AND DSCODDET = T1.TFCODTERMINAL " +
+                    "INNER JOIN FETASASFADET ON T1.TFIDPK = FETASASFADET.FDIDPK AND FDCONCEPTO LIKE('TASA DE USO%') " +
                     $"WHERE TFFECFAC BETWEEN TO_DATE('{fecini} 00:00','MM/DD/YYYY HH24:MI') " +
                     $"AND TO_DATE('{fecfin} 23:59','MM/DD/YYYY HH24:MI') " +
                     "AND TFESTADODIAN = 'OK' " +
@@ -87,6 +88,7 @@ namespace FETU.Querys
                     "FROM FETASASFA " +
                     "INNER JOIN GESUPTIP ON STDES = 'TERMINALES' " +
                     "INNER JOIN GEDETSUPTIP ON DSCODTIP = STCODTIP AND DSCODDET = TFCODTERMINAL " +
+                    "INNER JOIN FETASASFADET ON T1.TFIDPK = FETASASFADET.FDIDPK AND FDCONCEPTO LIKE('TASA DE USO%') " +
                     $"WHERE TFFECFAC BETWEEN TO_DATE('{fecini} 00:00','MM/DD/YYYY HH24:MI') " +
                     $"AND TO_DATE('{fecfin} 23:59','MM/DD/YYYY HH24:MI') " +
                     $"AND TFCODTERMINAL = '{codTerminal}' " +
@@ -111,6 +113,7 @@ namespace FETU.Querys
                     "FROM FETASASFA T1 " +
                     "INNER JOIN GESUPTIP ON STDES = 'TERMINALES' " +
                     "INNER JOIN GEDETSUPTIP ON DSCODTIP = STCODTIP AND DSCODDET = T1.TFCODTERMINAL " +
+                    "INNER JOIN FETASASFADET ON T1.TFIDPK = FETASASFADET.FDIDPK AND FDCONCEPTO LIKE('TASA DE USO%') " +
                     $"WHERE TFFECFAC BETWEEN TO_DATE('{fecini} 00:00','MM/DD/YYYY HH24:MI') " +
                     $"AND TO_DATE('{fecfin} 23:59','MM/DD/YYYY HH24:MI') " +
                     $"AND TFNITTT = '{nitTerminal}' " +
